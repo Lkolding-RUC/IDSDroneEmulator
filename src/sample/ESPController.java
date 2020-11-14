@@ -2,6 +2,7 @@ package sample;
 
 import javafx.application.Platform;
 
+import javax.crypto.spec.PSource;
 import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
@@ -28,12 +29,13 @@ public class ESPController implements Runnable{
         // 1. Vi kan sætte hvert element i arrayen til hver værdi manuelt --> starter med denne
         // 2. På en eller anden måde bruge et loop til at assigne hver værdi
 
+
         throttle = inputs.get(1);
         roll = inputs.get(2);
         pitch = inputs.get(3);
         yaw = inputs.get(4);
 
-        // Virker ikke lige nu
+        // Set the values in the GUI
         Platform.runLater(
                 new Runnable() {
                     @Override
@@ -45,19 +47,13 @@ public class ESPController implements Runnable{
                     }
                 }
         );
-
-
-
-
     }
+
 
     @Override
     public void run() {
         while(running){
-            if(recieveUDP.isConnected()){
-                moveDrone(recieveUDP.getRc());
-                System.out.println("in if");
-            }
+            moveDrone(recieveUDP.getRc());
         }
     }
 }

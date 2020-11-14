@@ -14,6 +14,7 @@ import java.util.List;
 public class RecieveUDP implements Runnable{
     private boolean running = true;
     private boolean connected = false;
+    private boolean rcValue = false;
     private InetAddress IP;
     private int incomingPort = 4000;
     private DatagramSocket socket;
@@ -50,12 +51,30 @@ public class RecieveUDP implements Runnable{
         return connected;
     }
 
+    public boolean isRcValue() {
+        return rcValue;
+    }
+
     public InetAddress getIP() {
         return IP;
     }
 
     @Override
     public void run() {
+        while(!connected){
+            DatagramPacket packet = new DatagramPacket(buf, buf.length);
+            try {
+                socket.receive(packet);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            incomingMsg = new String(packet.getData(), 0, packet.getLength());
+            if(incomingMsg.equals("connectionSucces")) {
+                System.out.println("Controller Connected!");
+                IP = packet.getAddress();
+                connected = true;
+            }
+        }
         while(running){
             // Recieve packet
             DatagramPacket packet = new DatagramPacket(buf, buf.length);
@@ -69,17 +88,13 @@ public class RecieveUDP implements Runnable{
             incomingMsg = new String(packet.getData(), 0, packet.getLength());
             System.out.println(incomingMsg);
 
-            if(incomingMsg.equals("connectionSucces")) {
-                System.out.println("Controller Connected!");
-                IP = packet.getAddress();
-                connected = true;
-            }
-
             // Check om de første 3 karaktere er "rc "
             // Sæt variabler så vi kan hente dem andre steder fra.
             if(incomingMsg.substring(0,Math.min(incomingMsg.length(), 3)).equals("rc ")){
                 System.out.println("RC command");
                 rc = new ArrayList<>(Arrays.asList(incomingMsg.split(" ")));
+                rcValue = true;
+                controller.droneInputs();
             }
         }
     }

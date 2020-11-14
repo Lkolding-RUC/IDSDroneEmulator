@@ -44,8 +44,7 @@ public class Controller implements Initializable {
     Connection broadcast = new Connection(recieveUDP, this);
     Thread udpBroadcast = new Thread(broadcast);
 
-    ESPController espController = new ESPController(recieveUDP, this);
-    Thread espControllerThread = new Thread(espController);
+
 
     // Only runnable once
     public void connect(ActionEvent actionEvent) throws IOException {
@@ -54,8 +53,13 @@ public class Controller implements Initializable {
             udpListen.start();
             connect.setText("Connecting...");
             udpBroadcast.start();
-            espControllerThread.start();
         }
+    }
+
+    ESPController espController = new ESPController(recieveUDP, this);
+    Thread espControllerThread = new Thread(espController);
+    public void droneInputs(){
+        espControllerThread.start();
     }
 
     @Override
