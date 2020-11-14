@@ -1,36 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="548.0" prefWidth="709.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
    <center>
-       <Pane fx:id="DronePane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="225.0" prefWidth="572.0" BorderPane.alignment="CENTER">
+       <Pane fx:id="DronePane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="523.0" prefWidth="572.0" BorderPane.alignment="CENTER">
            <children>
 
-               <ImageView fx:id="Drone" fitHeight="42.0" fitWidth="46.0" layoutX="250.0" layoutY="130.0" pickOnBounds="true" preserveRatio="true">
+               <ImageView fx:id="Drone" fitHeight="42.0" fitWidth="46.0" layoutX="250.0" layoutY="210.0" pickOnBounds="true" preserveRatio="true">
                    <image>
                        <Image url="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTBkhyTWldD4tdJNNtV9tEtbUhN69tBffcXLw&amp;usqp=CAU" />
                    </image>
                </ImageView>
            </children></Pane>
    </center>
-   <bottom>
-      <TableView fx:id="inputTable" prefHeight="150.0" prefWidth="600.0" BorderPane.alignment="CENTER">
-        <columns>
-          <TableColumn fx:id="throttle" prefWidth="75.0" text="Throttle" />
-          <TableColumn fx:id="roll" prefWidth="75.0" text="Roll" />
-            <TableColumn fx:id="pitch" prefWidth="75.0" text="Pitch" />
-            <TableColumn fx:id="yaw" prefWidth="75.0" text="Yaw" />
-        </columns>
-      </TableView>
-   </bottom>
    <top>
-      <Button fx:id="connect" alignment="CENTER" mnemonicParsing="false" onAction="#connect" text="Connect" BorderPane.alignment="CENTER" />
+      <Button fx:id="connect" alignment="CENTER" mnemonicParsing="false" onAction="#connect" text="Connect" BorderPane.alignment="TOP_LEFT">
+         <BorderPane.margin>
+            <Insets left="10.0" top="10.0" />
+         </BorderPane.margin></Button>
    </top>
    <left>
-      <GridPane BorderPane.alignment="CENTER">
+      <GridPane prefHeight="523.0" prefWidth="104.0" BorderPane.alignment="CENTER">
         <rowConstraints>
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -38,13 +33,58 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Label fx:id="throttleLabel" text="Label" GridPane.rowIndex="0" />
-            <Label fx:id="rollLabel" text="label" GridPane.rowIndex="1" />
-            <Label fx:id="pitchLabel" text="label" GridPane.rowIndex="2" />
-            <Label fx:id="yawLabel" text="label" GridPane.rowIndex="3" />
+            <Label text="Throttle:" GridPane.rowIndex="0">
+               <GridPane.margin>
+                  <Insets left="5.0" />
+               </GridPane.margin></Label>
+            <Label text="Roll:" GridPane.rowIndex="1">
+               <GridPane.margin>
+                  <Insets left="5.0" />
+               </GridPane.margin></Label>
+            <Label text="Pitch:" GridPane.rowIndex="2">
+               <GridPane.margin>
+                  <Insets left="5.0" />
+               </GridPane.margin></Label>
+            <Label text="Yaw:" GridPane.rowIndex="3">
+               <GridPane.margin>
+                  <Insets left="5.0" />
+               </GridPane.margin></Label>
+            <Label fx:id="pitchLabel" text="0" textFill="#e83333" GridPane.columnIndex="1" GridPane.rowIndex="2">
+               <GridPane.margin>
+                  <Insets left="5.0" />
+               </GridPane.margin>
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
+            <Label fx:id="throttleLabel" text="0" textFill="#e83333" GridPane.columnIndex="1">
+               <GridPane.margin>
+                  <Insets left="5.0" />
+               </GridPane.margin>
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
+            <Label fx:id="rollLabel" text="0" textFill="#e83333" GridPane.columnIndex="1" GridPane.rowIndex="1">
+               <GridPane.margin>
+                  <Insets left="5.0" />
+               </GridPane.margin>
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
+            <Label fx:id="yawLabel" text="0" textFill="#e83333" GridPane.columnIndex="1" GridPane.rowIndex="3">
+               <GridPane.margin>
+                  <Insets left="5.0" />
+               </GridPane.margin>
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
          </children>
          <columnConstraints>
-            <ColumnConstraints />
+            <ColumnConstraints maxWidth="64.0" minWidth="33.0" prefWidth="64.0" />
+            <ColumnConstraints maxWidth="95.0" minWidth="10.0" prefWidth="40.0" />
          </columnConstraints>
       </GridPane>
    </left>

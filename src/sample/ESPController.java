@@ -18,7 +18,12 @@ public class ESPController implements Runnable{
     RecieveUDP recieveUDP;
     private double offsetX;
     private double offsetY;
+    private double scaleX;
+    private double scaleY;
+    private double rotation;
     private boolean running = true;
+    private double pitchAdapter;
+
 
     public ESPController(RecieveUDP recieveUDP, Controller controller) {
         this.controller = controller;
@@ -37,6 +42,9 @@ public class ESPController implements Runnable{
         pitch = inputs.get(3);
         yaw = inputs.get(4);
 
+        pitchAdapter = Double.parseDouble(pitch)/75.0;
+
+
         // Set the values in the GUI
         Platform.runLater(
                 new Runnable() {
@@ -46,16 +54,24 @@ public class ESPController implements Runnable{
                         controller.rollLabel.setText(roll);
                         controller.pitchLabel.setText(pitch);
                         controller.yawLabel.setText(yaw);
-
-
                         offsetX=controller.Drone.getLayoutX();
                         offsetY=controller.Drone.getLayoutY();
-                        if(offsetX + Double.parseDouble(yaw) < controller.DronePane.getHeight() && offsetX + Double.parseDouble(yaw) > 0){
-                            controller.Drone.setLayoutX(offsetX + Double.parseDouble(yaw));
+                        if(offsetX + Double.parseDouble(roll) < 500 && offsetX + Double.parseDouble(roll) > 0){
+                            controller.Drone.setLayoutX(offsetX + Double.parseDouble(roll));
                         }
-                        if(offsetY + Double.parseDouble(throttle) < controller.DronePane.getWidth() && offsetY + Double.parseDouble(throttle) >0 ){
+                        if(offsetY + Double.parseDouble(throttle) < 450 && offsetY + Double.parseDouble(throttle) >0 ){
                             controller.Drone.setLayoutY(offsetY + Double.parseDouble(throttle));
                         }
+
+                        scaleX = controller.Drone.getScaleX();
+                        scaleY = controller.Drone.getScaleY();
+                        if(scaleX + pitchAdapter > 0.5 && scaleY + pitchAdapter > 0.5 && scaleX + pitchAdapter < 3.0 && scaleY + pitchAdapter < 3.0){
+                            controller.Drone.setScaleX(scaleX + pitchAdapter);
+                            controller.Drone.setScaleY(scaleY + pitchAdapter);
+                        }
+
+                        rotation = controller.Drone.getRotate();
+                        controller.Drone.setRotate(rotation + Double.parseDouble(yaw));
 
                     }
                 }
