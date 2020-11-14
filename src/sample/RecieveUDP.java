@@ -69,6 +69,7 @@ public class RecieveUDP implements Runnable{
                 e.printStackTrace();
             }
             incomingMsg = new String(packet.getData(), 0, packet.getLength());
+            System.out.println(incomingMsg);
             if(incomingMsg.equals("connectionSucces")) {
                 System.out.println("Controller Connected!");
                 IP = packet.getAddress();
@@ -91,10 +92,14 @@ public class RecieveUDP implements Runnable{
             // Check om de første 3 karaktere er "rc "
             // Sæt variabler så vi kan hente dem andre steder fra.
             if(incomingMsg.substring(0,Math.min(incomingMsg.length(), 3)).equals("rc ")){
-                System.out.println("RC command");
+
                 rc = new ArrayList<>(Arrays.asList(incomingMsg.split(" ")));
+                if(!rcValue){
+                    controller.droneInputs();
+                    System.out.println("test");
+                }
                 rcValue = true;
-                controller.droneInputs();
+
             }
         }
     }

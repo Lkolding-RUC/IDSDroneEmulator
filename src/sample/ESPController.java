@@ -53,6 +53,11 @@ public class ESPController implements Runnable{
     @Override
     public void run() {
         while(running){
+            try {
+                Thread.sleep(100);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
             moveDrone(recieveUDP.getRc());
         }
     }
