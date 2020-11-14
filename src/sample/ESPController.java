@@ -16,6 +16,8 @@ public class ESPController implements Runnable{
     private String yaw;
     private Controller controller;
     RecieveUDP recieveUDP;
+    private double offsetX;
+    private double offsetY;
     private boolean running = true;
 
     public ESPController(RecieveUDP recieveUDP, Controller controller) {
@@ -44,6 +46,17 @@ public class ESPController implements Runnable{
                         controller.rollLabel.setText(roll);
                         controller.pitchLabel.setText(pitch);
                         controller.yawLabel.setText(yaw);
+
+
+                        offsetX=controller.Drone.getLayoutX();
+                        offsetY=controller.Drone.getLayoutY();
+                        if(offsetX + Double.parseDouble(yaw) < controller.DronePane.getHeight() && offsetX + Double.parseDouble(yaw) > 0){
+                            controller.Drone.setLayoutX(offsetX + Double.parseDouble(yaw));
+                        }
+                        if(offsetY + Double.parseDouble(throttle) < controller.DronePane.getWidth() && offsetY + Double.parseDouble(throttle) >0 ){
+                            controller.Drone.setLayoutY(offsetY + Double.parseDouble(throttle));
+                        }
+
                     }
                 }
         );

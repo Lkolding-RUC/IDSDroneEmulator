@@ -5,17 +5,6 @@
 <?import javafx.scene.layout.*?>
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
-   <center>
-       <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-           <children>
-               <Label layoutX="286.0" layoutY="116.0" />
-               <ImageView fitHeight="42.0" fitWidth="46.0" layoutX="254.0" layoutY="137.0" pickOnBounds="true" preserveRatio="true">
-                   <image>
-                       <Image url="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTBkhyTWldD4tdJNNtV9tEtbUhN69tBffcXLw&amp;usqp=CAU" />
-                   </image>
-               </ImageView>
-           </children></Pane>
-   </center>
    <bottom>
       <TableView fx:id="inputTable" prefHeight="150.0" prefWidth="600.0" BorderPane.alignment="CENTER">
         <columns>
@@ -48,4 +37,12 @@
          </columnConstraints>
       </GridPane>
    </left>
+   <center>
+
+         <ImageView fx:id="Drone" fitHeight="42.0" fitWidth="46.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+             <image>
+                 <Image url="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTBkhyTWldD4tdJNNtV9tEtbUhN69tBffcXLw&amp;usqp=CAU" />
+             </image>
+         </ImageView>
+   </center>
 </BorderPane>

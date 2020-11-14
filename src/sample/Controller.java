@@ -9,6 +9,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.Pane;
 
 import java.io.IOException;
 import java.net.InetAddress;
@@ -26,6 +28,8 @@ public class Controller implements Initializable {
     public Label rollLabel;
     public Label pitchLabel;
     public Label yawLabel;
+    public ImageView Drone;
+    public Pane DronePane;
 
     // Måske lige gyldig?
     private InetAddress controllerIP;
