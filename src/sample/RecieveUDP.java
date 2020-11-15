@@ -70,7 +70,7 @@ public class RecieveUDP implements Runnable{
 
             // Write input to variables
             incomingMsg = new String(packet.getData(), 0, packet.getLength());
-            System.out.println(incomingMsg);
+
 
             // Check om de første 3 karaktere er "rc "
             // Sæt variabler så vi kan hente dem andre steder fra.
@@ -79,7 +79,6 @@ public class RecieveUDP implements Runnable{
                 rc = new ArrayList<>(Arrays.asList(incomingMsg.split(" ")));
                 if(!rcValue){
                     controller.droneInputs();
-                    System.out.println("test");
                 }
                 rcValue = true;
 
