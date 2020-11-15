@@ -21,7 +21,6 @@ public class RecieveUDP implements Runnable{
     private ArrayList<String> rc;
 
     // Kan modtage en controller så vi kan stoppe broadcasten herinde fra.
-    // Dette gør vi muligvis ikke mere
     public RecieveUDP(Controller controller) {
         this.controller = controller;
         try {

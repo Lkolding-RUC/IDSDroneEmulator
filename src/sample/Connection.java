@@ -12,7 +12,6 @@ public class Connection implements Runnable{
     private int outgoingPort = 4004;
     private DatagramSocket socket;
     private boolean running = true;
-    private byte[] buf = new byte[256];
     private RecieveUDP recieveUDP;
     private Controller controller;
 
@@ -44,7 +43,6 @@ public class Connection implements Runnable{
 
         DatagramPacket packet = new DatagramPacket(buffer, buffer.length, broadcastAdress, outgoingPort);
         socket.send(packet);
-        System.out.println("why no send?");
         socket.setBroadcast(false);
 
         Thread.sleep(1000);

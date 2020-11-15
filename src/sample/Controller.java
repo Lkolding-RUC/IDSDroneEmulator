@@ -35,9 +35,9 @@ public class Controller{
         }
     }
 
-    ESPController espController = new ESPController(recieveUDP, this);
-    Thread espControllerThread = new Thread(espController);
+    DroneMovement droneMovement = new DroneMovement(recieveUDP, this);
+    Thread droneMovementThread = new Thread(droneMovement);
     public void droneInputs(){
-        espControllerThread.start();
+        droneMovementThread.start();
     }
 }
