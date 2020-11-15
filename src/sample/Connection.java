@@ -44,6 +44,7 @@ public class Connection implements Runnable{
 
         DatagramPacket packet = new DatagramPacket(buffer, buffer.length, broadcastAdress, outgoingPort);
         socket.send(packet);
+        System.out.println("why no send?");
         socket.setBroadcast(false);
 
         Thread.sleep(1000);
