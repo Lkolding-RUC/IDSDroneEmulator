@@ -1,41 +1,22 @@
 package sample;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.Pane;
 
 import java.io.IOException;
-import java.net.InetAddress;
-import java.net.URL;
-import java.util.ResourceBundle;
 
-public class Controller implements Initializable {
+public class Controller{
     public Button connect;
-    public TableView inputTable;
-    public TableColumn throttle;
-    public TableColumn roll;
-    public TableColumn pitch;
-    public TableColumn yaw;
     public Label throttleLabel;
     public Label rollLabel;
     public Label pitchLabel;
     public Label yawLabel;
-
-    // Måske lige gyldig?
-    private InetAddress controllerIP;
-
-
-    public void initialize(){
-    }
-
-
-
+    public ImageView Drone;
+    public Pane DronePane;
+    public Label ip;
 
     boolean running = false;
     RecieveUDP recieveUDP = new RecieveUDP(this);
@@ -43,8 +24,6 @@ public class Controller implements Initializable {
 
     Connection broadcast = new Connection(recieveUDP, this);
     Thread udpBroadcast = new Thread(broadcast);
-
-
 
     // Only runnable once
     public void connect(ActionEvent actionEvent) throws IOException {
@@ -56,14 +35,9 @@ public class Controller implements Initializable {
         }
     }
 
-    ESPController espController = new ESPController(recieveUDP, this);
-    Thread espControllerThread = new Thread(espController);
+    DroneMovement droneMovement = new DroneMovement(recieveUDP, this);
+    Thread droneMovementThread = new Thread(droneMovement);
     public void droneInputs(){
-        espControllerThread.start();
-    }
-
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-
+        droneMovementThread.start();
     }
 }
