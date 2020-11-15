@@ -1,7 +1,5 @@
 package sample;
 
-import javafx.application.Platform;
-
 import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
@@ -9,7 +7,6 @@ import java.net.InetAddress;
 import java.net.SocketException;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 public class RecieveUDP implements Runnable{
     private boolean running = true;
@@ -33,15 +30,6 @@ public class RecieveUDP implements Runnable{
             e.printStackTrace();
         }
     }
-    // Overloader constructoren så vi ikke behøves at give RecieveUDP en controller.
-    // Måske ikke nødvendigt
-    public RecieveUDP(){
-        try {
-            socket = new DatagramSocket(incomingPort);
-        } catch (SocketException e) {
-            e.printStackTrace();
-        }
-    }
 
     public ArrayList<String> getRc() {
         return rc;
@@ -49,10 +37,6 @@ public class RecieveUDP implements Runnable{
 
     public boolean isConnected() {
         return connected;
-    }
-
-    public boolean isRcValue() {
-        return rcValue;
     }
 
     public InetAddress getIP() {

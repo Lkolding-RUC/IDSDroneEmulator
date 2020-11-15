@@ -9,8 +9,6 @@ import java.net.InetAddress;
 import java.net.SocketException;
 
 public class Connection implements Runnable{
-
-    private InetAddress ip;
     private int outgoingPort = 4004;
     private DatagramSocket socket;
     private boolean running = true;
@@ -67,6 +65,7 @@ public class Connection implements Runnable{
                             @Override
                             public void run() {
                                 controller.connect.setText("Connected");
+                                controller.ip.setText(String.valueOf(recieveUDP.getIP()));
                             }
                         }
                 );
